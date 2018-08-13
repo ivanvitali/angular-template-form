@@ -1,2 +1,14 @@
-<h3>Home Component</h3>
-<p>Welcome to Angular Seed</p>
+<h3>Angular Template-driven Form</h3>
+<form 
+    #customerForm="ngForm"
+    novalidate>
+    <input 
+        type="text"
+        placeholder="Name"
+        required
+        name="name"
+        ngModel>
+    <button type="submit">Ok</button>
+</form>
+
+{{ customerForm.pristine }}
