@@ -16,7 +16,7 @@
             required
             #firstName
             name="firstName"
-            ngModel>
+            [(ngModel)]="employee.firstName">
         </div>
 
         <div class="form-group">
@@ -31,7 +31,7 @@
             placeholder="Last Name"
             required
             name="lastName"
-            ngModel>
+            [(ngModel)]="employee.lastName">
         </div>
 
         <div class="form-check">
@@ -40,7 +40,7 @@
                 type="checkbox" 
                 id="fullTimeCheckboxId"
                 name="is-full-time"
-                ngModel>
+                [(ngModel)]="employee.isFullTime">
             <label 
                 class="form-check-label" 
                 for="fullTimeCheckboxId">
@@ -59,7 +59,7 @@
                     id="w2PaymentTypeId" 
                     value="w2"
                     checked
-                    ngModel>
+                    [(ngModel)]="employee.paymentType">
                 <label 
                     class="form-check-label" 
                     for="w2PaymentTypeId">
@@ -74,7 +74,7 @@
                     name="payment-type" 
                     id="tenPaymentTypeId" 
                     value="1099"
-                    ngModel>
+                    [(ngModel)]="employee.paymentType">
                 <label 
                     class="form-check-label" 
                     for="tenPaymentTypeId">
@@ -89,7 +89,7 @@
                 class="form-control" 
                 id="primaryLanguageId"
                 name="primaryLanguage"
-                ngModel >
+                [(ngModel)]="employee.primaryLanguage" >
                 <option 
                     *ngFor = "let lang of languages" >
                     {{ lang }}
@@ -101,7 +101,9 @@
             <label for="">Date Hired</label>
             <input 
                 type="date"
-                class="form-control">
+                class="form-control"
+                name="hire-date"
+                [(ngModel)]="employee.hireDate">
         </div>
         
         
@@ -114,5 +116,10 @@
 <br>
 <h4>Classes del campot First Name #firstName</h4>
 <p> {{ firstName.className }} </p>
-<br><br><br>
-{{ customerForm.value | json }}
+<br>
+<h4>Employee Model</h4>
+<p> Employee: {{ employee | json }} </p>
+<br>
+<h4> Angular Model</h4>
+<p> Angular: {{ customerForm.value | json }} </p>
+<br>
