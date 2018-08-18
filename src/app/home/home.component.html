@@ -2,6 +2,7 @@
     <h3>Employee Form</h3>
     <form 
         #employeeForm="ngForm"
+        (submit)="submitForm(employeeForm)"
         novalidate>
         <div class="form-group">
             <label
