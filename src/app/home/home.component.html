@@ -1,39 +1,68 @@
 <div class="container">
     <h3>Employee Form</h3>
     <form 
-        #customerForm="ngForm"
+        #employeeForm="ngForm"
         novalidate>
         <div class="form-group">
-            <label 
+            <label
                 for="firstNameId">
                 First Name
             </label>
             <input
-            id="firstNameId"
-            class="form-control"
-            type="text"
-            placeholder="First Name"
-            required
-            #firstName
-            name="firstName"
-            [ngModel]="employee.firstName"
-            (ngModelChange)="firstNameToUpperCase($event)">
+                id="firstNameId"
+                class="form-control"
+                [class.is-invalid]="(firstName.touched || firstName.dirty) && firstName.errors"
+                type="text"
+                placeholder="First Name"
+                required
+                pattern="^[A-Za-z]{3,25}$"
+                #firstName="ngModel"
+                name="firstName"
+                [ngModel]="employee.firstName"
+                (ngModelChange)="firstNameToUpperCase($event)">
+            <div 
+                class="invalid-feedback"
+                *ngIf="(firstName.touched || firstName.dirty) && firstName.errors">
+                <div
+                    *ngIf="firstName.errors.required">
+                    First Name is required.
+                </div>
+                <div
+                    *ngIf="firstName.errors?.pattern">
+                    First Name not valid.
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
-            <label 
+            <label
                 for="lastNameId">
                 Last Name
             </label>
             <input
-            id="lastNameId"
-            class="form-control"
-            type="text"
-            placeholder="Last Name"
-            required
-            name="lastName"
-            [ngModel]="employee.lastName"
-            (ngModelChange)="lastNameToUpperCase($event)">
+                id="lastNameId"
+                class="form-control"
+                [class.is-invalid]="(lastName.touched || lastName.dirty) && lastName.errors"
+                type="text"
+                placeholder="Last Name"
+                required
+                pattern="^[A-Za-z]{3,25}$"
+                #lastName="ngModel"
+                name="lastName"
+                [ngModel]="employee.lastName"
+                (ngModelChange)="lastNameToUpperCase($event)">
+            <div 
+                class="invalid-feedback"
+                *ngIf="(lastName.touched || lastName.dirty) && lastName.errors">
+                <div
+                    *ngIf="lastName.errors.required">
+                    Last Name is required.
+                </div>
+                <div
+                    *ngIf="lastName.errors?.pattern">
+                    Last Name not valid.
+                </div>
+            </div>
         </div>
 
         <div class="form-check">
@@ -90,13 +119,25 @@
             <select 
                 class="form-control" 
                 id="primaryLanguageId"
+                [class.is-invalid]="hasPrimaryLanguageError || primaryLanguage.invalid"
+                #primaryLanguage
+                required
+                (blur)="validatePrimaryLanguage(primaryLanguage.value)"
+                (change)="validatePrimaryLanguage(primaryLanguage.value)"
                 name="primaryLanguage"
                 [(ngModel)]="employee.primaryLanguage" >
+                <option 
+                    value="default">
+                    Select a Language...
+                </option>
                 <option 
                     *ngFor = "let lang of languages" >
                     {{ lang }}
                 </option>
             </select>
+            <div class="invalid-feedback">
+                Select a valid language
+            </div>
         </div>
 
         <div class="form-group">
@@ -111,17 +152,18 @@
         
         <button
             class="btn btn-primary"
-            type="submit">Ok</button>
+            type="submit"
+            [disabled]="employeeForm.invalid">Ok</button>
     </form>
 </div>
 
 <br>
-<h4>Classes del campot First Name #firstName</h4>
-<p> {{ firstName.className }} </p>
+<h4>Classes del campo 'First Name' #firstName</h4>
+<p> {{ firstName.invalid }} </p>
 <br>
 <h4>Employee Model</h4>
 <p> Employee: {{ employee | json }} </p>
 <br>
 <h4> Angular Model</h4>
-<p> Angular: {{ customerForm.value | json }} </p>
+<p> Angular: {{ employeeForm.value | json }} </p>
 <br>

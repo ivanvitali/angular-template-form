@@ -9,7 +9,8 @@ import { Employee } from '../employee/employee.model';
 
 export class HomeComponent {
   languages = ['English', 'Spanish', 'Other'];
-  employee = new Employee('', '',false,'w2','English','');
+  employee = new Employee('', '',false,'w2','default','');
+  hasPrimaryLanguageError = false;
 
   firstNameToUpperCase(value: string) {
     this.employee.firstName = this.firstLetterToUpperCaseOtherToLowerCase(value);
@@ -24,6 +25,14 @@ export class HomeComponent {
       return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
     } else {
       return value;
+    }
+  }
+
+  validatePrimaryLanguage(value: string) {
+    if  (value === "default") {
+      this.hasPrimaryLanguageError = true;
+    } else {
+      this.hasPrimaryLanguageError = false;
     }
   }
 
