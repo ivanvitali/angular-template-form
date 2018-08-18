@@ -1,4 +1,7 @@
-<div class="container">
+<h3 *ngIf="languages.length == 0">Loading...</h3>
+<div 
+    class="container"
+    *ngIf="languages.length > 0">
     <h3>Employee Form</h3>
     <form 
         #employeeForm="ngForm"
@@ -158,7 +161,7 @@
     </form>
 </div>
 
-<br>
+<!-- <br>
 <h4>Classes del campo 'First Name' #firstName</h4>
 <p> {{ firstName.invalid }} </p>
 <br>
@@ -167,4 +170,4 @@
 <br>
 <h4> Angular Model</h4>
 <p> Angular: {{ employeeForm.value | json }} </p>
-<br>
+<br> -->
