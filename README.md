@@ -1,6 +1,7 @@
 ## angular2-seed
 
-A simple starter project demonstrating the basic concepts of Angular 2.
+A simple starter project demonstrating the basic concepts of Angular 2 using Template-driven form approach.
+
 
 
 ### Usage
